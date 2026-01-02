@@ -66,5 +66,4 @@ public class Fidelity
     [StringLength(20)]
     [Phone]
     public string? Cellulare { get; set; } = null;
-
 }

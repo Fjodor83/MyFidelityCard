@@ -421,13 +421,13 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Tasks/8.0.21": {
+      "Microsoft.NET.ILLink.Tasks/8.0.22": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-      "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.10": {
+      "Microsoft.NET.Sdk.WebAssembly.Pack/10.0.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -886,13 +886,13 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Tasks/8.0.21": {
+      "Microsoft.NET.ILLink.Tasks/8.0.22": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-      "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.10": {
+      "Microsoft.NET.Sdk.WebAssembly.Pack/10.0.1": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -1743,10 +1743,10 @@
         "microsoft.jsinterop.webassembly.nuspec"
       ]
     },
-    "Microsoft.NET.ILLink.Tasks/8.0.21": {
-      "sha512": "s8H5PZQs50OcNkaB6Si54+v3GWM7vzs6vxFRMlD3aXsbM+aPCtod62gmK0BYWou9diGzmo56j8cIf/PziijDqQ==",
+    "Microsoft.NET.ILLink.Tasks/8.0.22": {
+      "sha512": "MhcMithKEiyyNkD2ZfbDZPmcOdi0GheGfg8saEIIEfD/fol3iHmcV8TsZkD4ZYz5gdUuoX4YtlVySUU7Sxl9SQ==",
       "type": "package",
-      "path": "microsoft.net.illink.tasks/8.0.21",
+      "path": "microsoft.net.illink.tasks/8.0.22",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -1760,7 +1760,7 @@
         "build/Microsoft.NET.ILLink.Analyzers.props",
         "build/Microsoft.NET.ILLink.Tasks.props",
         "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.8.0.21.nupkg.sha512",
+        "microsoft.net.illink.tasks.8.0.22.nupkg.sha512",
         "microsoft.net.illink.tasks.nuspec",
         "tools/net472/ILLink.Tasks.dll",
         "tools/net472/ILLink.Tasks.dll.config",
@@ -1794,16 +1794,15 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.NET.Sdk.WebAssembly.Pack/9.0.10": {
-      "sha512": "Ye7Zr/1d5cMeXyqv2uaEYrZjgRAcZKTXE/dJByxhicD7jLQSQcwmuBZzIXi+SY5sZbvKeH7nSTcVa7fOrJArfw==",
+    "Microsoft.NET.Sdk.WebAssembly.Pack/10.0.1": {
+      "sha512": "8XSP0Wu0xpj3xr88WwW43GiklXXiM27n6V8CXk35wT1MjxCfmudQJYmLbirWiPiqU1vCIWTIczPpI40ivC3ruQ==",
       "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/9.0.10",
+      "path": "microsoft.net.sdk.webassembly.pack/10.0.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "WasmAppHost/BrowserDebugHost.deps.json",
         "WasmAppHost/BrowserDebugHost.dll",
@@ -1828,12 +1827,12 @@
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets",
         "build/Wasm.web.config",
         "build/browser.runtimeconfig.template.json",
-        "microsoft.net.sdk.webassembly.pack.9.0.10.nupkg.sha512",
+        "microsoft.net.sdk.webassembly.pack.10.0.1.nupkg.sha512",
         "microsoft.net.sdk.webassembly.pack.nuspec",
+        "tools/net10.0/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
+        "tools/net10.0/Microsoft.NET.WebAssembly.Webcil.dll",
         "tools/net472/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
-        "tools/net472/Microsoft.NET.WebAssembly.Webcil.dll",
-        "tools/net9.0/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
-        "tools/net9.0/Microsoft.NET.WebAssembly.Webcil.dll"
+        "tools/net472/Microsoft.NET.WebAssembly.Webcil.dll"
       ]
     },
     "System.IO.Pipelines/8.0.0": {
@@ -1876,51 +1875,45 @@
       "FidelityCard.Lib >= 1.0.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 8.0.21",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 8.0.21",
-      "Microsoft.NET.ILLink.Tasks >= 8.0.21",
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 9.0.10"
+      "Microsoft.NET.ILLink.Tasks >= 8.0.22",
+      "Microsoft.NET.Sdk.WebAssembly.Pack >= 10.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rsassanelli\\.nuget\\packages\\": {},
-    "C:\\Program Files\\DevExpress 24.2\\Components\\Offline Packages": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\Techservice02\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj",
+      "projectUniqueName": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj",
       "projectName": "FidelityCard",
-      "projectPath": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj",
-      "packagesPath": "C:\\Users\\rsassanelli\\.nuget\\packages\\",
-      "outputPath": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard\\obj\\",
+      "projectPath": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj",
+      "packagesPath": "C:\\Users\\Techservice02\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\DevExpress 24.2\\Components\\Offline Packages",
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\rsassanelli\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.2.config",
+        "C:\\Users\\Techservice02\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\DevExpress 24.2\\Components\\System\\Components\\Packages": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj": {
-              "projectPath": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj"
+            "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj": {
+              "projectPath": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj"
             }
           }
         }
@@ -1935,7 +1928,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -1953,13 +1946,13 @@
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[8.0.21, )",
+            "version": "[8.0.22, )",
             "autoReferenced": true
           },
           "Microsoft.NET.Sdk.WebAssembly.Pack": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[9.0.10, )",
+            "version": "[10.0.1, )",
             "autoReferenced": true
           }
         },
@@ -1977,7 +1970,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[8.0.21, 8.0.21]"
+            "version": "[8.0.22, 8.0.22]"
           }
         ],
         "frameworkReferences": {
@@ -1985,7 +1978,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

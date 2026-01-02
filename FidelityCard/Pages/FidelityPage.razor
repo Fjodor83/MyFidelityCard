@@ -1,109 +1,180 @@
 ﻿@page "/fidelity-form"
-
 @using FidelityCard.Lib.Models
 @using System.Text.Json
 @inject HttpClient Http
 @inject IJSRuntime JS
 @inject NavigationManager NM
 
+<PageTitle>Completa Profilo - Suns</PageTitle>
+
 @if(IsVisible)
 {
-    <div class="text-center py-3" style="height:fit-content;">
-        <img src="img\logo.avif" style="width:min(30%, 150px)" />
-        <h1 class="fs-3 m-0">Registrazione utente</h1>
+    <div class="min-vh-100 d-flex align-items-center bg-white">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <div class="card shadow-lg border-0" style="border-radius: 20px;">
+                        <div class="card-header text-white text-center py-4 registration-header" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
+                             <img src="img/logo.avif" alt="Logo" style="width: 80px; height: auto; filter: brightness(0) invert(1);" class="mb-2"/>
+                            <h3 class="mb-0 fw-bold">👤 Completa il tuo Profilo</h3>
+                            <p class="mb-0 small opacity-75">Suns - Zero & Company</p>
+                        </div>
+                        <div class="card-body p-4 p-md-5">
+                            
+                             <div class="alert alert-info border-0 bg-light shadow-sm mb-4">
+                                <div class="d-flex">
+                                    <div class="me-3 text-primary fs-4">
+                                        <i class="bi bi-info-circle-fill"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="alert-heading fw-bold mb-1">Benvenuto!</h6>
+                                        <p class="mb-0 text-muted small">Per completare la registrazione e ottenere la tua <strong>Fidelity Card</strong>, inserisci i tuoi dati reali. I campi contrassegnati sono obbligatori.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if(Success)
+                            {
+                                <div class="text-center py-5">
+                                    <div class="mb-4">
+                                        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                                    </div>
+                                    <h2 class="fw-bold mb-3">Registrazione Completata!</h2>
+                                    <p class="text-muted mb-4 lead">Grazie per esserti registrato.</p>
+                                    <p class="mb-2">Ti abbiamo inviato una email con la tua <strong>Fidelity Card digitale</strong>.</p>
+                                    <p class="text-muted small">Controlla la tua casella di posta (anche nello spam).</p>
+                                </div>
+                            }
+                            else
+                            {
+                                <EditForm Model="Fidelity" OnSubmit="OnHandleSubmit">
+                                    <DataAnnotationsValidator />
+                                    
+                                    @if (!string.IsNullOrEmpty(ErrorMessage))
+                                    {
+                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <i class="bi bi-exclamation-octagon me-2"></i> @ErrorMessage
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" @onclick='() => ErrorMessage = ""'></button>
+                                        </div>
+                                    }
+
+                                    <div class="row g-3">
+                                        <!-- Anagrafica -->
+                                        <div class="col-12"><h6 class="text-uppercase text-muted border-bottom pb-2 mb-3 mt-2 small fw-bold">Dati Anagrafici</h6></div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <InputText id="Nome" @bind-Value="Fidelity.Nome" class="form-control" placeholder=" " />
+                                                <label for="Nome">Nome</label>
+                                            </div>
+                                            <ValidationMessage For="@(() => Fidelity.Nome)" class="text-danger small ms-1" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <InputText id="Cognome" @bind-Value="Fidelity.Cognome" class="form-control" placeholder=" " />
+                                                <label for="Cognome">Cognome</label>
+                                            </div>
+                                            <ValidationMessage For="@(() => Fidelity.Cognome)" class="text-danger small ms-1" />
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <InputDate id="DataNascita" @bind-Value="Fidelity.DataNascita" class="form-control" placeholder=" " />
+                                                <label for="DataNascita">Data di nascita</label>
+                                            </div>
+                                            <ValidationMessage For="@(() => Fidelity.DataNascita)" class="text-danger small ms-1" />
+                                        </div>
+                                        <div class="col-md-6">
+                                             <div class="form-floating">
+                                                <select id="Sesso" class="form-select" @onchange="(e) => Fidelity.Sesso = (string?)e.Value" value="@Fidelity.Sesso">
+                                                    <option value="" disabled selected>Seleziona...</option>
+                                                    @foreach (var item in Helpers.SessoType)
+                                                    {
+                                                        <option value="@item.Value">@item.Key</option>
+                                                    }
+                                                </select>
+                                                <!-- sesso label stays static or floating depending on browser, usually floating for select works with label after -->
+                                                <label for="Sesso">Sesso</label>
+                                            </div>
+                                            <ValidationMessage For="@(() => Fidelity.Sesso)" class="text-danger small ms-1" />
+                                        </div>
+
+                                        <!-- Contatti -->
+                                         <div class="col-12"><h6 class="text-uppercase text-muted border-bottom pb-2 mb-3 mt-4 small fw-bold">Contatti e Residenza</h6></div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <InputText id="Email" @bind-Value="Fidelity.Email" class="form-control bg-light" placeholder=" " readonly />
+                                                <label for="Email">Email (non modificabile)</label>
+                                            </div>
+                                            <ValidationMessage For="@(() => Fidelity.Email)" class="text-danger small ms-1" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <InputText id="Cellulare" @bind-Value="Fidelity.Cellulare" class="form-control" placeholder=" " />
+                                                <label for="Cellulare">Cellulare</label>
+                                            </div>
+                                            <ValidationMessage For="@(() => Fidelity.Cellulare)" class="text-danger small ms-1" />
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-floating">
+                                                <InputText id="Indirizzo" @bind-Value="Fidelity.Indirizzo" class="form-control" placeholder=" " />
+                                                <label for="Indirizzo">Indirizzo</label>
+                                            </div>
+                                            <ValidationMessage For="@(() => Fidelity.Indirizzo)" class="text-danger small ms-1" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-floating">
+                                                <InputText id="Localita" @bind-Value="Fidelity.Localita" class="form-control" placeholder=" " />
+                                                <label for="Localita">Località</label>
+                                            </div>
+                                            <ValidationMessage For="@(() => Fidelity.Localita)" class="text-danger small ms-1" />
+                                        </div>
+                                         <div class="col-md-4">
+                                            <div class="form-floating">
+                                                <InputText id="Provincia" @bind-Value="Fidelity.Provincia" class="form-control" placeholder=" " style="text-transform: uppercase;" @onblur="() => Fidelity.Provincia = Fidelity.Provincia?.ToUpper()" />
+                                                <label for="Provincia">Provincia (Sigla)</label>
+                                            </div>
+                                            <ValidationMessage For="@(() => Fidelity.Provincia)" class="text-danger small ms-1" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-floating">
+                                                <InputText id="Cap" @bind-Value="Fidelity.Cap" class="form-control" placeholder=" " />
+                                                <label for="Cap">CAP</label>
+                                            </div>
+                                             <ValidationMessage For="@(() => Fidelity.Cap)" class="text-danger small ms-1" />
+                                        </div>
+                                         <div class="col-md-4 d-none"> 
+                                            <div class="form-floating">
+                                                <InputText id="Nazione" @bind-Value="Fidelity.Nazione" class="form-control" placeholder=" " style="text-transform: uppercase;" @onblur="() => Fidelity.Nazione = Fidelity.Nazione?.ToUpper()" />
+                                                <label for="Nazione">Nazione</label>
+                                            </div>
+                                            <ValidationMessage For="@(() => Fidelity.Nazione)" class="text-danger small ms-1" />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid mt-5">
+                                        <button type="submit" class="btn btn-registration btn-lg text-white py-3 shadow-sm">
+                                            <i class="bi bi-check-lg me-2"></i> Conferma e Registrati
+                                        </button>
+                                    </div>
+                                </EditForm>
+                            }
+
+                            <div class="mt-4 text-center">
+                                <small class="text-muted opacity-75">
+                                    <i class="bi bi-shield-lock-fill me-1"></i> 
+                                    I tuoi dati sono trattati in conformità alla normativa sulla privacy.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <EditForm Model="Fidelity" OnSubmit="OnHandleSubmit" class="p-3">
-        <DataAnnotationsValidator />
-        @if (!string.IsNullOrEmpty(ErrorMessage))
-        {
-            <div class="alert alert-danger">@ErrorMessage</div>
-        }
-
-        <!-- Prima riga: Nome e Cognome -->
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="Nome" class="form-label">Nome</label>
-                <InputText id="Nome" @bind-Value="Fidelity.Nome" class="form-control" />
-                <ValidationMessage For="@(() => Fidelity.Nome)" />
-            </div>
-            <div class="col-md-6">
-                <label for="Cognome" class="form-label">Cognome</label>
-                <InputText id="Cognome" @bind-Value="Fidelity.Cognome" class="form-control" />
-                <ValidationMessage For="@(() => Fidelity.Cognome)" />
-            </div>
-        </div>
-
-        <!-- Seconda riga: Email, Data di nascita, Sesso -->
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="Email" class="form-label">Email</label>
-                <InputText id="Email" readonly="readonly" @bind-Value="Fidelity.Email" class="form-control" />
-                <ValidationMessage For="@(() => Fidelity.Email)" />
-            </div>
-            <div class="col-md-3">
-                <label for="DataNascita" class="form-label">Data di nascita</label>
-                <InputDate id="DataNascita" @bind-Value="Fidelity.DataNascita" class="form-control" />
-                <ValidationMessage For="@(() => Fidelity.DataNascita)" />
-            </div>
-            <div class="col-md-3">
-                <label for="Sesso" class="form-label">Sesso</label>
-                <select class="form-control" @onchange="(e) => Fidelity.Sesso = (string?)e.Value">
-                    <option value="">-- Seleziona un elemento --</option>
-                    @foreach (var item in Helpers.SessoType)
-                    {
-                        <option value="@item.Value">@item.Key</option>
-                    }
-                </select>
-                <ValidationMessage For="@(() => Fidelity.Sesso)" />
-            </div>
-        </div>
-
-        <!-- Terza riga: Indirizzo e Località -->
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="Indirizzo" class="form-label">Indirizzo</label>
-                <InputText id="Indirizzo" @bind-Value="Fidelity.Indirizzo" class="form-control" />
-                <ValidationMessage For="@(() => Fidelity.Indirizzo)" />
-            </div>
-            <div class="col-md-6">
-                <label for="Localita" class="form-label">Località</label>
-                <InputText id="Localita" @bind-Value="Fidelity.Localita" class="form-control" />
-                <ValidationMessage For="@(() => Fidelity.Localita)" />
-            </div>
-        </div>
-
-        <!-- Quarta riga: CAP, Provincia, Nazione, Cellulare -->
-        <div class="row mb-3">
-            <div class="col-md-2">
-                <label for="Cap" class="form-label">CAP</label>
-                <InputText id="Cap" @bind-Value="Fidelity.Cap" class="form-control" />
-                <ValidationMessage For="@(() => Fidelity.Cap)" />
-            </div>
-            <div class="col-md-2">
-                <label for="Provincia" class="form-label">Provincia</label>
-                <InputText id="Provincia" @onblur="() => Fidelity.Provincia = Fidelity.Provincia?.ToUpper()" @bind-Value="Fidelity.Provincia" class="form-control" style="text-transform: uppercase;" />
-                <ValidationMessage For="@(() => Fidelity.Provincia)" />
-            </div>
-            <div class="col-md-2">
-                <label for="Nazione" class="form-label">Nazione</label>
-                <InputText id="Nazione" @onblur="() => Fidelity.Nazione = Fidelity.Nazione?.ToUpper()" @bind-Value="Fidelity.Nazione" class="form-control" style="text-transform: uppercase;" />
-                <ValidationMessage For="@(() => Fidelity.Nazione)" />
-            </div>
-            <div class="col-md-6">
-                <label for="Cellulare" class="form-label">Cellulare</label>
-                <InputText id="Cellulare" @bind-Value="Fidelity.Cellulare" class="form-control" />
-                <ValidationMessage For="@(() => Fidelity.Cellulare)" />
-            </div>
-        </div>
-
-        <!-- Pulante di submit -->
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary px-5">
-                Salva
-            </button>
-        </div>
-
-    </EditForm>
 }
 
 
@@ -114,6 +185,7 @@
     private string ErrorMessage { get; set; } = string.Empty;
     Fidelity Fidelity = new();
     public static CustomSettings? CustomSettings { get; set; } = null;
+    private bool Success { get; set; } = false;
 
     private bool IsVisible { get; set; } = true;
     protected override async Task OnInitializedAsync()
@@ -215,8 +287,9 @@
                     if (response.IsSuccessStatusCode)
                     {
                         // Salvataggio riuscito
-
-                        Fidelity = new(); // Reset del form
+                        // Mostra messaggio di successo
+                        Success = true;
+                        // Fidelity = new(); // Non resettiamo per ora, o se resettiamo non importa perché mostriamo il success message
                     }
                     else
                     {

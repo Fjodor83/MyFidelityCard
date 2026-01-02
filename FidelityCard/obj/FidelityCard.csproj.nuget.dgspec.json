@@ -1,36 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj": {}
+    "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj": {}
   },
   "projects": {
-    "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj": {
+    "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj",
+        "projectUniqueName": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj",
         "projectName": "FidelityCard.Lib",
-        "projectPath": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj",
-        "packagesPath": "C:\\Users\\rsassanelli\\.nuget\\packages\\",
-        "outputPath": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard.Lib\\obj\\",
+        "projectPath": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj",
+        "packagesPath": "C:\\Users\\Techservice02\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard.Lib\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 24.2\\Components\\Offline Packages",
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\rsassanelli\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.2.config",
+          "C:\\Users\\Techservice02\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\DevExpress 24.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -49,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -84,45 +80,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj": {
+    "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj",
+        "projectUniqueName": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj",
         "projectName": "FidelityCard",
-        "projectPath": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj",
-        "packagesPath": "C:\\Users\\rsassanelli\\.nuget\\packages\\",
-        "outputPath": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard\\obj\\",
+        "projectPath": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard\\FidelityCard.csproj",
+        "packagesPath": "C:\\Users\\Techservice02\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 24.2\\Components\\Offline Packages",
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\rsassanelli\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.2.config",
+          "C:\\Users\\Techservice02\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\DevExpress 24.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj": {
-                "projectPath": "E:\\Sviluppo\\VISUAL STUDIO\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj"
+              "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj": {
+                "projectPath": "C:\\Users\\Techservice02\\Desktop\\My WorkSpace\\FIDELITY CARD\\FidelityCard.Lib\\FidelityCard.Lib.csproj"
               }
             }
           }
@@ -137,7 +129,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -155,13 +147,13 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.21, )",
+              "version": "[8.0.22, )",
               "autoReferenced": true
             },
             "Microsoft.NET.Sdk.WebAssembly.Pack": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.10, )",
+              "version": "[10.0.1, )",
               "autoReferenced": true
             }
           },
@@ -179,7 +171,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[8.0.21, 8.0.21]"
+              "version": "[8.0.22, 8.0.22]"
             }
           ],
           "frameworkReferences": {
@@ -187,7 +179,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

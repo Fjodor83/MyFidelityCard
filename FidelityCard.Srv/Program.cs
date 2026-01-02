@@ -1,4 +1,5 @@
 using FidelityCard.Lib.Services;
+using FidelityCard.Srv.Services;
 using FidelityCard.Srv.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -25,6 +26,9 @@ builder.Services.AddDbContext<FidelityCardDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<ICardGeneratorService, CardGeneratorService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

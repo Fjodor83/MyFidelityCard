@@ -137,6 +137,49 @@
           }
         }
       }
+    },
+    "/api/FidelityCard/Profile": {
+      "get": {
+        "tags": [
+          "FidelityCard"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/FidelityCard/QRCode/{code}": {
+      "get": {
+        "tags": [
+          "FidelityCard"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
