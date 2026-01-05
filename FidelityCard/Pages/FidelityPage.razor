@@ -105,14 +105,20 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-1">
                                                 <label for="Nome" class="form-label-modern">Nome</label>
-                                                <InputText id="Nome" @bind-Value="Fidelity.Nome" class="form-control form-control-modern" placeholder="Inserisci il tuo nome" />
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-person input-icon"></i>
+                                                    <InputText id="Nome" @bind-Value="Fidelity.Nome" class="form-control form-control-modern" placeholder="Inserisci il tuo nome" />
+                                                </div>
                                                 <ValidationMessage For="@(() => Fidelity.Nome)" class="text-danger small ms-1" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-1">
                                                 <label for="Cognome" class="form-label-modern">Cognome</label>
-                                                <InputText id="Cognome" @bind-Value="Fidelity.Cognome" class="form-control form-control-modern" placeholder="Inserisci il tuo cognome" />
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-person input-icon"></i>
+                                                    <InputText id="Cognome" @bind-Value="Fidelity.Cognome" class="form-control form-control-modern" placeholder="Inserisci il tuo cognome" />
+                                                </div>
                                                 <ValidationMessage For="@(() => Fidelity.Cognome)" class="text-danger small ms-1" />
                                             </div>
                                         </div>
@@ -120,9 +126,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-1">
                                                 <label for="DataNascita" class="form-label-modern">Data di nascita</label>
-                                                <div class="date-input-wrapper">
-                                                    <InputDate id="DataNascita" @bind-Value="Fidelity.DataNascita" class="form-control form-control-modern" />
-                                                    <i class="bi bi-calendar-event date-icon"></i>
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-calendar-event input-icon"></i>
+                                                    <InputDate id="DataNascita" @bind-Value="Fidelity.DataNascita" class="form-control form-control-modern" max="@DateTime.Today.ToString("yyyy-MM-dd")" />
                                                 </div>
                                                 <ValidationMessage For="@(() => Fidelity.DataNascita)" class="text-danger small ms-1" />
                                             </div>
@@ -130,68 +136,95 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-1">
                                                 <label for="Sesso" class="form-label-modern">Sesso</label>
-                                                <select id="Sesso" class="form-select form-control-modern" @onchange="(e) => Fidelity.Sesso = (string?)e.Value" value="@Fidelity.Sesso">
-                                                    <option value="" disabled selected>Seleziona...</option>
-                                                    @foreach (var item in Helpers.SessoType)
-                                                    {
-                                                        <option value="@item.Value">@item.Key</option>
-                                                    }
-                                                </select>
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-gender-ambiguous input-icon"></i>
+                                                    <select id="Sesso" class="form-select form-control-modern" @onchange="(e) => Fidelity.Sesso = (string?)e.Value" value="@Fidelity.Sesso" style="cursor: pointer;">
+                                                        <option value="" disabled selected>Seleziona...</option>
+                                                        @foreach (var item in Helpers.SessoType)
+                                                        {
+                                                            <option value="@item.Value">@item.Key</option>
+                                                        }
+                                                    </select>
+                                                </div>
                                                 <ValidationMessage For="@(() => Fidelity.Sesso)" class="text-danger small ms-1" />
                                             </div>
                                         </div>
 
                                         <!-- Contatti -->
-                                        <div class="col-12"><h6 class="text-uppercase text-muted border-bottom pb-2 mb-3 mt-4 small fw-bold">Contatti e Residenza</h6></div>
+                                        <div class="col-12"><h6 class="text-uppercase text-muted border-bottom pb-2 mb-3 mt-4 small fw-bold">Contatti</h6></div>
 
                                         <div class="col-md-6">
                                             <div class="form-group mb-1">
                                                 <label for="Email" class="form-label-modern">Email</label>
-                                                <InputText id="Email" @bind-Value="Fidelity.Email" class="form-control form-control-modern" readonly />
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-envelope input-icon"></i>
+                                                    <InputText id="Email" @bind-Value="Fidelity.Email" class="form-control form-control-modern" readonly />
+                                                </div>
                                                 <ValidationMessage For="@(() => Fidelity.Email)" class="text-danger small ms-1" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-1">
                                                 <label for="Cellulare" class="form-label-modern">Cellulare</label>
-                                                <InputText id="Cellulare" @bind-Value="Fidelity.Cellulare" class="form-control form-control-modern" placeholder="Inserisci numero di cellulare" />
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-phone input-icon"></i>
+                                                    <InputText id="Cellulare" @bind-Value="Fidelity.Cellulare" class="form-control form-control-modern" placeholder="Inserisci numero di cellulare" />
+                                                </div>
                                                 <ValidationMessage For="@(() => Fidelity.Cellulare)" class="text-danger small ms-1" />
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <!-- Residenza -->
+                                        <div class="col-12"><h6 class="text-uppercase text-muted border-bottom pb-2 mb-3 mt-4 small fw-bold">Residenza</h6></div>
+
+                                        <div class="col-12">
                                             <div class="form-group mb-1">
                                                 <label for="Indirizzo" class="form-label-modern">Indirizzo</label>
-                                                <InputText id="Indirizzo" @bind-Value="Fidelity.Indirizzo" class="form-control form-control-modern" placeholder="Via/Piazza, Civico" />
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-house input-icon"></i>
+                                                    <InputText id="Indirizzo" @bind-Value="Fidelity.Indirizzo" class="form-control form-control-modern" placeholder="Via/Piazza, Civico" />
+                                                </div>
                                                 <ValidationMessage For="@(() => Fidelity.Indirizzo)" class="text-danger small ms-1" />
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-5">
                                             <div class="form-group mb-1">
                                                 <label for="Localita" class="form-label-modern">Località</label>
-                                                <InputText id="Localita" @bind-Value="Fidelity.Localita" class="form-control form-control-modern" placeholder="Comune" />
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-geo-alt input-icon"></i>
+                                                    <InputText id="Localita" @bind-Value="Fidelity.Localita" class="form-control form-control-modern" placeholder="Comune" />
+                                                </div>
                                                 <ValidationMessage For="@(() => Fidelity.Localita)" class="text-danger small ms-1" />
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group mb-1">
-                                                <label for="Provincia" class="form-label-modern">Provincia</label>
-                                                <InputText id="Provincia" @bind-Value="Fidelity.Provincia" class="form-control form-control-modern" placeholder="Sigla (es. BA)" style="text-transform: uppercase;" @onblur="() => Fidelity.Provincia = Fidelity.Provincia?.ToUpper()" maxlength="2" />
-                                                <ValidationMessage For="@(() => Fidelity.Provincia)" class="text-danger small ms-1" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group mb-1">
                                                 <label for="Cap" class="form-label-modern">CAP</label>
-                                                <InputText id="Cap" @bind-Value="Fidelity.Cap" class="form-control form-control-modern" placeholder="CAP" maxlength="5" />
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-geo input-icon"></i>
+                                                    <InputText id="Cap" @bind-Value="Fidelity.Cap" class="form-control form-control-modern" placeholder="CAP" maxlength="5" />
+                                                </div>
                                                 <ValidationMessage For="@(() => Fidelity.Cap)" class="text-danger small ms-1" />
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-2">
+                                            <div class="form-group mb-1">
+                                                <label for="Provincia" class="form-label-modern">Prov</label>
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-map input-icon"></i>
+                                                    <InputText id="Provincia" @bind-Value="Fidelity.Provincia" class="form-control form-control-modern" placeholder="XX" style="text-transform: uppercase;" @onblur="() => Fidelity.Provincia = Fidelity.Provincia?.ToUpper()" maxlength="2" />
+                                                </div>
+                                                <ValidationMessage For="@(() => Fidelity.Provincia)" class="text-danger small ms-1" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
                                             <div class="form-group mb-1">
                                                 <label for="Nazione" class="form-label-modern">Nazione</label>
-                                                <InputText id="Nazione" @bind-Value="Fidelity.Nazione" class="form-control form-control-modern" placeholder="Nazione" maxlength="2" />
+                                                <div class="input-wrapper">
+                                                    <i class="bi bi-flag input-icon"></i>
+                                                    <InputText id="Nazione" @bind-Value="Fidelity.Nazione" class="form-control form-control-modern" placeholder="IT" maxlength="2" />
+                                                </div>
                                                 <ValidationMessage For="@(() => Fidelity.Nazione)" class="text-danger small ms-1" />
                                             </div>
                                         </div>
@@ -259,6 +292,11 @@
     protected override async Task OnAfterRenderAsync(bool first)
     {
         await base.OnAfterRenderAsync(first);
+
+        if (first) 
+        {
+            await JS.InvokeVoidAsync("manifestInterop.initDatePicker", "DataNascita");
+        }
 
         if (CustomSettings == null)
         {
