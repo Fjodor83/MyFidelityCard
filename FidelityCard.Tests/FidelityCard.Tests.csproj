@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
@@ -23,6 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FidelityCard.Application\FidelityCard.Application.csproj" />
+    <ProjectReference Include="..\FidelityCard.Domain\FidelityCard.Domain.csproj" />
     <ProjectReference Include="..\FidelityCard.Srv\FidelityCard.Srv.csproj" />
     <ProjectReference Include="..\FidelityCard.Lib\FidelityCard.Lib.csproj" />
   </ItemGroup>
