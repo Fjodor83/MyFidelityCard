@@ -1,5 +1,6 @@
 using FidelityCard.Domain.Entities;
 using FidelityCard.Domain.Interfaces;
+using FidelityCard.Domain.ValueObjects;
 using FidelityCard.Srv.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,14 +20,22 @@ public class FidelityRepository : IFidelityRepository
 
     public async Task<Fidelity?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
+        // Normalizza email come fa il Value Object
+        var normalizedEmail = email.Trim().ToLowerInvariant();
+        
+        // Usa FromSqlRaw per evitare problemi con Value Object conversion in query
         return await _context.Fidelity
-            .FirstOrDefaultAsync(f => EF.Property<string>(f, "Email") == email.ToLowerInvariant(), cancellationToken);
+            .FromSqlRaw("SELECT * FROM Fidelity WHERE Email = {0}", normalizedEmail)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task<Fidelity?> GetByCodeAsync(string cdFidelity, CancellationToken cancellationToken = default)
     {
+        var normalizedCode = cdFidelity.Trim().ToUpperInvariant();
+        
         return await _context.Fidelity
-            .FirstOrDefaultAsync(f => EF.Property<string>(f, "CdFidelity") == cdFidelity.ToUpperInvariant(), cancellationToken);
+            .FromSqlRaw("SELECT * FROM Fidelity WHERE CdFidelity = {0}", normalizedCode)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task<Fidelity?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
@@ -36,14 +45,20 @@ public class FidelityRepository : IFidelityRepository
 
     public async Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
+        var normalizedEmail = email.Trim().ToLowerInvariant();
+        
         return await _context.Fidelity
-            .AnyAsync(f => EF.Property<string>(f, "Email") == email.ToLowerInvariant(), cancellationToken);
+            .FromSqlRaw("SELECT * FROM Fidelity WHERE Email = {0}", normalizedEmail)
+            .AnyAsync(cancellationToken);
     }
 
     public async Task<bool> ExistsByCodeAsync(string cdFidelity, CancellationToken cancellationToken = default)
     {
+        var normalizedCode = cdFidelity.Trim().ToUpperInvariant();
+        
         return await _context.Fidelity
-            .AnyAsync(f => EF.Property<string>(f, "CdFidelity") == cdFidelity.ToUpperInvariant(), cancellationToken);
+            .FromSqlRaw("SELECT * FROM Fidelity WHERE CdFidelity = {0}", normalizedCode)
+            .AnyAsync(cancellationToken);
     }
 
     public async Task<Fidelity> AddAsync(Fidelity fidelity, CancellationToken cancellationToken = default)
