@@ -8,7 +8,7 @@ namespace FidelityCard.Srv.Services;
 /// <summary>
 /// Implementazione del servizio di generazione card
 /// </summary>
-public class CardGeneratorService : ICardGeneratorService
+public class CardGeneratorService : Application.Interfaces.ICardGeneratorService
 {
     public async Task<byte[]> GeneraCardDigitaleAsync(FidelityDto fidelity, string? puntoVenditaNome = null)
     {
