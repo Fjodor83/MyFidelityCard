@@ -35,6 +35,20 @@ a,
     color: #0071c1;
 }
 
+/* Remove focus outline from static text elements to prevent visual glitches */
+h1:focus,
+h2:focus,
+h3:focus,
+h4:focus,
+h5:focus,
+h6:focus,
+.alert-heading:focus,
+.card-header:focus,
+.flip-card-container:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 /* ============================================
    SHARED UTILITIES & GRADIENTS
    ============================================ */
