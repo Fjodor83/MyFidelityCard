@@ -1,17 +1,18 @@
-using FidelityCard.Srv.Services;
+using FidelityCard.Srv.Repositories;
+using FidelityCard.Domain.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Moq;
 using Xunit;
 
 namespace FidelityCard.Tests.Services;
 
-public class TokenServiceTests : IDisposable
+public class FileTokenRepositoryTests : IDisposable
 {
     private readonly Mock<IWebHostEnvironment> _mockEnv;
-    private readonly TokenService _tokenService;
+    private readonly FileTokenRepository _tokenRepository;
     private readonly string _testPath;
 
-    public TokenServiceTests()
+    public FileTokenRepositoryTests()
     {
         _mockEnv = new Mock<IWebHostEnvironment>();
         
@@ -21,7 +22,7 @@ public class TokenServiceTests : IDisposable
         
         _mockEnv.Setup(e => e.ContentRootPath).Returns(_testPath);
 
-        _tokenService = new TokenService(_mockEnv.Object);
+        _tokenRepository = new FileTokenRepository(_mockEnv.Object);
     }
 
     [Fact]
@@ -29,10 +30,10 @@ public class TokenServiceTests : IDisposable
     {
         // Arrange
         string email = "test@example.com";
-        string store = "TestStore";
+        string store = "NE001";
 
         // Act
-        string token = _tokenService.GenerateToken(email, store);
+        string token = _tokenRepository.GenerateToken(email, store);
 
         // Assert
         Assert.False(string.IsNullOrEmpty(token));
@@ -46,12 +47,12 @@ public class TokenServiceTests : IDisposable
     }
 
     [Fact]
-    public async Task GetTokenDataAsync_ShouldReturnContent_WhenTokenExists()
+    public async Task GetTokenDataAsync_ShouldReturnTokenData_WhenTokenExists()
     {
         // Arrange
         string email = "test@example.com";
-        string store = "TestStore";
-        string token = "test-token";
+        string store = "NE001";
+        string token = "test-token-123";
         
         string tokenDir = Path.Combine(_testPath, "Token");
         Directory.CreateDirectory(tokenDir);
@@ -59,20 +60,63 @@ public class TokenServiceTests : IDisposable
         await File.WriteAllTextAsync(tokenPath, $"{store}\r\n{email}");
 
         // Act
-        string content = await _tokenService.GetTokenDataAsync(token);
+        TokenData? tokenData = await _tokenRepository.GetTokenDataAsync(token);
 
         // Assert
-        Assert.Contains(email, content);
+        Assert.NotNull(tokenData);
+        Assert.Equal(store, tokenData.Store);
+        Assert.Equal(email, tokenData.Email);
     }
 
     [Fact]
-    public async Task GetTokenDataAsync_ShouldReturnEmpty_WhenTokenDoesNotExist()
+    public async Task GetTokenDataAsync_ShouldReturnNull_WhenTokenDoesNotExist()
     {
         // Act
-        string content = await _tokenService.GetTokenDataAsync("non-existent-token");
+        TokenData? tokenData = await _tokenRepository.GetTokenDataAsync("non-existent-token");
 
         // Assert
-        Assert.Equal(string.Empty, content);
+        Assert.Null(tokenData);
+    }
+
+    [Fact]
+    public async Task ValidateTokenAsync_ShouldReturnSameAsGetTokenData()
+    {
+        // Arrange
+        string email = "validate@example.com";
+        string store = "NE002";
+        string token = _tokenRepository.GenerateToken(email, store);
+
+        // Act
+        var tokenData = await _tokenRepository.ValidateTokenAsync(token);
+
+        // Assert
+        Assert.NotNull(tokenData);
+        Assert.Equal(store, tokenData.Store);
+        Assert.Equal(email, tokenData.Email);
+    }
+
+    [Fact]
+    public void CleanupExpiredTokens_ShouldRemoveOldTokens()
+    {
+        // Arrange
+        string tokenDir = Path.Combine(_testPath, "Token");
+        Directory.CreateDirectory(tokenDir);
+        
+        // Create an old token file
+        string oldTokenPath = Path.Combine(tokenDir, "old-token");
+        File.WriteAllText(oldTokenPath, "NE001\r\nold@example.com");
+        File.SetCreationTime(oldTokenPath, DateTime.Now.AddMinutes(-20));
+
+        // Create a recent token file
+        string recentTokenPath = Path.Combine(tokenDir, "recent-token");
+        File.WriteAllText(recentTokenPath, "NE001\r\nrecent@example.com");
+
+        // Act
+        _tokenRepository.CleanupExpiredTokens(TimeSpan.FromMinutes(15));
+
+        // Assert
+        Assert.False(File.Exists(oldTokenPath), "Old token should be deleted");
+        Assert.True(File.Exists(recentTokenPath), "Recent token should remain");
     }
 
     // Cleanup
