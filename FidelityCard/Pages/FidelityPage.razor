@@ -188,6 +188,13 @@
                                                  <ValidationMessage For="@(() => Fidelity.Cap)" class="text-danger small ms-1" />
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group mb-1">
+                                                <label for="Nazione" class="form-label-modern">Nazione</label>
+                                                <InputText id="Nazione" @bind-Value="Fidelity.Nazione" class="form-control form-control-modern" placeholder="Nazione" maxlength="2" />
+                                                <ValidationMessage For="@(() => Fidelity.Nazione)" class="text-danger small ms-1" />
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="d-grid mt-5">
