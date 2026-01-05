@@ -48,8 +48,8 @@ public class EmailValueObjectTests
     [Fact]
     public void Email_TooLong_ShouldThrow()
     {
-        // Arrange
-        var longEmail = new string('a', 90) + "@test.com"; // > 100 chars
+        // Arrange - 92 + "@test.com" (9 chars) = 101 chars, > 100
+        var longEmail = new string('a', 92) + "@test.com";
 
         // Act & Assert
         Assert.Throws<ArgumentException>(() => new Email(longEmail));
