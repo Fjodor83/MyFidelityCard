@@ -22,6 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FidelityCard.Application\FidelityCard.Application.csproj" />
+    <ProjectReference Include="..\FidelityCard.Domain\FidelityCard.Domain.csproj" />
     <ProjectReference Include="..\FidelityCard.Lib\FidelityCard.Lib.csproj" />
   </ItemGroup>
 

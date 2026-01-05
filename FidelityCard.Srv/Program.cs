@@ -1,45 +1,76 @@
+using FidelityCard.Application.Interfaces;
+using FidelityCard.Application.UseCases;
+using FidelityCard.Domain.Interfaces;
 using FidelityCard.Lib.Services;
-using FidelityCard.Srv.Services;
 using FidelityCard.Srv.Data;
+using FidelityCard.Srv.Repositories;
+using FidelityCard.Srv.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Supporto CORS
+// ==========================================
+// CORS Configuration
+// ==========================================
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("https://localhost:7065") // URL del client Blazor WebAssembly
+        policy.WithOrigins("https://localhost:7065")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
 
-var settings = builder.Configuration.GetSection("EmailSettings").Get<EmailSettings>() ?? new();
-builder.Services.AddSingleton(Options.Create(settings));
+// ==========================================
+// Options Pattern - Settings
+// ==========================================
+var emailSettings = builder.Configuration.GetSection("EmailSettings").Get<EmailSettings>() ?? new();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddSingleton(Options.Create(emailSettings));
 
-
-// Add services to the container.
+// ==========================================
+// Database Configuration
+// ==========================================
 builder.Services.AddDbContext<FidelityCardDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllers();
+// ==========================================
+// Repository Registrations (Scoped)
+// ==========================================
+builder.Services.AddScoped<IFidelityRepository, FidelityRepository>();
+builder.Services.AddScoped<ITokenRepository, FileTokenRepository>();
 
+// ==========================================
+// Service Registrations (Scoped)
+// ==========================================
 builder.Services.AddScoped<ICardGeneratorService, CardGeneratorService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// ==========================================
+// Use Case Registrations (Scoped)
+// ==========================================
+builder.Services.AddScoped<RegisterFidelityUseCase>();
+builder.Services.AddScoped<ValidateEmailUseCase>();
+builder.Services.AddScoped<GetProfileUseCase>();
+builder.Services.AddScoped<ConfirmEmailUseCase>();
+builder.Services.AddScoped<GetFidelityByEmailUseCase>();
+
+// ==========================================
+// Controllers & Swagger
+// ==========================================
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Supporto CORS
+// ==========================================
+// Middleware Pipeline
+// ==========================================
 app.UseCors();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -47,9 +78,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
