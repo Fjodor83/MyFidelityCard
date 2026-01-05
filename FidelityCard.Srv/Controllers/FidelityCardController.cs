@@ -50,16 +50,23 @@ public class FidelityCardController : ControllerBase
     [HttpGet("[action]")]
     public async Task<IActionResult> EmailValidation(string email, string? store)
     {
-        var baseUrl = $"{Request.Scheme}://{_config.GetValue<string>("ClientHost")}";
-        
-        var result = await _validateEmailUseCase.ExecuteAsync(email, store, baseUrl);
-
-        if (!result.Success)
+        try
         {
-            return BadRequest(result.ErrorMessage);
-        }
+            var baseUrl = $"{Request.Scheme}://{_config.GetValue<string>("ClientHost")}";
+            
+            var result = await _validateEmailUseCase.ExecuteAsync(email, store, baseUrl);
 
-        return Ok(new { userExists = result.Data!.UserExists });
+            if (!result.Success)
+            {
+                return BadRequest(new { error = result.ErrorMessage });
+            }
+
+            return Ok(new { userExists = result.Data!.UserExists });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = $"Errore interno: {ex.Message}", details = ex.InnerException?.Message });
+        }
     }
 
     /// <summary>
