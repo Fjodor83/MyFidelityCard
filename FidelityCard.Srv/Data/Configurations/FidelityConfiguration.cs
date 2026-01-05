@@ -1,5 +1,7 @@
 using FidelityCard.Domain.Entities;
+using FidelityCard.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FidelityCard.Srv.Data.Configurations;
@@ -18,7 +20,7 @@ public class FidelityConfiguration : IEntityTypeConfiguration<Fidelity>
         builder.Property(f => f.IdFidelity)
             .ValueGeneratedOnAdd();
 
-        // CdFidelity - Value Object conversion
+        // CdFidelity - Value Object conversion con ValueComparer
         builder.Property(f => f.CdFidelity)
             .HasColumnName("CdFidelity")
             .HasColumnType("varchar(20)")
@@ -26,12 +28,16 @@ public class FidelityConfiguration : IEntityTypeConfiguration<Fidelity>
             .IsRequired()
             .HasConversion(
                 v => v.Value,
-                v => new Domain.ValueObjects.CodiceFidelity(v));
+                v => new CodiceFidelity(v))
+            .Metadata.SetValueComparer(new ValueComparer<CodiceFidelity>(
+                (c1, c2) => c1 != null && c2 != null && c1.Value == c2.Value,
+                c => c.Value.GetHashCode(),
+                c => new CodiceFidelity(c.Value)));
 
         builder.HasIndex(f => f.CdFidelity)
             .IsUnique();
 
-        // Store (CdNe) - Value Object conversion
+        // Store (CdNe) - Value Object conversion con ValueComparer
         builder.Property(f => f.Store)
             .HasColumnName("CdNe")
             .HasColumnType("varchar(6)")
@@ -39,7 +45,11 @@ public class FidelityConfiguration : IEntityTypeConfiguration<Fidelity>
             .IsRequired()
             .HasConversion(
                 v => v.Value,
-                v => new Domain.ValueObjects.CodiceNegozio(v));
+                v => new CodiceNegozio(v))
+            .Metadata.SetValueComparer(new ValueComparer<CodiceNegozio>(
+                (c1, c2) => c1 != null && c2 != null && c1.Value == c2.Value,
+                c => c.Value.GetHashCode(),
+                c => new CodiceNegozio(c.Value)));
 
         // Cognome
         builder.Property(f => f.Cognome)
@@ -58,7 +68,7 @@ public class FidelityConfiguration : IEntityTypeConfiguration<Fidelity>
             .HasColumnType("smalldatetime")
             .IsRequired();
 
-        // Email - Value Object conversion
+        // Email - Value Object conversion con ValueComparer
         builder.Property(f => f.Email)
             .HasColumnName("Email")
             .HasColumnType("varchar(100)")
@@ -66,7 +76,11 @@ public class FidelityConfiguration : IEntityTypeConfiguration<Fidelity>
             .IsRequired()
             .HasConversion(
                 v => v.Value,
-                v => new Domain.ValueObjects.Email(v));
+                v => new Email(v))
+            .Metadata.SetValueComparer(new ValueComparer<Email>(
+                (e1, e2) => e1 != null && e2 != null && e1.Value == e2.Value,
+                e => e.Value.GetHashCode(),
+                e => new Email(e.Value)));
 
         builder.HasIndex(f => f.Email)
             .IsUnique();
