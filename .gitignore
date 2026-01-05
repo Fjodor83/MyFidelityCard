@@ -7,3 +7,6 @@ obj/
 .gemini/
 .idea/
 .vscode/
+
+# Ignored Folders
+**/Token/

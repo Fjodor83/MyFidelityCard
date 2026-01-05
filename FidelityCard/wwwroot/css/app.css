@@ -553,19 +553,20 @@ code {
         overflow-y: hidden;
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
-        padding-bottom: 5px; /* Space for scrollbar */
+        padding-bottom: 5px;
+        /* Space for scrollbar */
         border-bottom: none;
     }
-    
+
     .nav-tabs-scrollable::-webkit-scrollbar {
         height: 4px;
     }
-    
+
     .nav-tabs-scrollable::-webkit-scrollbar-thumb {
         background: #ccc;
         border-radius: 4px;
     }
-    
+
     .nav-tabs-scrollable .nav-link {
         border: 1px solid transparent;
         border-radius: 20px;
@@ -575,7 +576,8 @@ code {
     }
 
     .nav-tabs-scrollable .nav-link.active {
-        background-color: #105a12; /* Brand green */
+        background-color: #105a12;
+        /* Brand green */
         color: white !important;
     }
 }
@@ -590,8 +592,8 @@ code {
         display: none;
     }
 
-    .table-mobile-cards tbody, 
-    .table-mobile-cards tr, 
+    .table-mobile-cards tbody,
+    .table-mobile-cards tr,
     .table-mobile-cards td {
         display: block;
         width: 100%;
@@ -601,7 +603,7 @@ code {
         background: #fff;
         margin-bottom: 1rem;
         border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         padding: 1rem;
         border: 1px solid #eaeaea;
     }
@@ -643,4 +645,97 @@ code {
     .table-mobile-cards td .btn-group .btn {
         flex: 1;
     }
+}
+
+/* ============================================
+   MODERN COMPACT FORM STYLES
+   ============================================ */
+
+.form-label-modern {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.form-control-modern {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background-color: #f8f9fa;
+}
+
+.form-control-modern:focus {
+    background-color: #fff;
+    border-color: #105a12;
+    box-shadow: 0 0 0 3px rgba(16, 90, 18, 0.15);
+}
+
+/* Modern Date Picker Styling */
+input[type="date"].form-control-modern {
+    position: relative;
+    color: #495057;
+}
+
+input[type="date"].form-control-modern::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.date-input-wrapper {
+    position: relative;
+}
+
+.date-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #105a12;
+    pointer-events: none;
+    font-size: 1.1rem;
+}
+
+/* Readonly input styling */
+.form-control-modern:read-only {
+    background-color: #e9ecef;
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+/* Validation styling override for modern inputs */
+.form-control-modern.valid.modified:not([type=checkbox]) {
+    outline: none;
+    border-color: #26b050;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2326b050' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.form-control-modern.invalid {
+    outline: none;
+    border-color: #dc3545;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+/* Specific for date input due to custom icon */
+.date-input-wrapper .form-control-modern.valid.modified,
+.date-input-wrapper .form-control-modern.invalid {
+    background-position: right 2.5rem center;
+    /* Move validation icon left of calendar icon */
 }
