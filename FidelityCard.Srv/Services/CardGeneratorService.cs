@@ -1,13 +1,16 @@
+using FidelityCard.Application.DTOs;
+using FidelityCard.Application.Interfaces;
 using SkiaSharp;
 using QRCoder;
-using FidelityCard.Lib.Services;
-using FidelityCard.Lib.Models;
 
 namespace FidelityCard.Srv.Services;
 
+/// <summary>
+/// Implementazione del servizio di generazione card
+/// </summary>
 public class CardGeneratorService : ICardGeneratorService
 {
-    public async Task<byte[]> GeneraCardDigitaleAsync(Fidelity fidelity, string? puntoVenditaNome = null)
+    public async Task<byte[]> GeneraCardDigitaleAsync(FidelityDto fidelity, string? puntoVenditaNome = null)
     {
         return await Task.Run(() =>
         {
@@ -19,6 +22,7 @@ public class CardGeneratorService : ICardGeneratorService
             using var surface = SKSurface.Create(info);
             var canvas = surface.Canvas;
             
+            // Background gradient
             using (var paint = new SKPaint())
             {
                 paint.Shader = SKShader.CreateLinearGradient(
@@ -30,6 +34,7 @@ public class CardGeneratorService : ICardGeneratorService
                 canvas.DrawRect(0, 0, width, height, paint);
             }
             
+            // Titolo
             using (var paint = new SKPaint())
             {
                 paint.Color = SKColors.White;
@@ -39,6 +44,7 @@ public class CardGeneratorService : ICardGeneratorService
                 canvas.DrawText("SUNS FIDELITY CARD", 40, 60, paint);
             }
             
+            // Store name
             using (var paint = new SKPaint())
             {
                 paint.Color = SKColors.White;
@@ -47,6 +53,7 @@ public class CardGeneratorService : ICardGeneratorService
                 canvas.DrawText(storeName, 40, 100, paint);
             }
             
+            // Nome completo
             using (var paint = new SKPaint())
             {
                 paint.Color = SKColors.White;
@@ -56,27 +63,27 @@ public class CardGeneratorService : ICardGeneratorService
                 canvas.DrawText($"{fidelity.Nome} {fidelity.Cognome}", 40, 200, paint);
             }
             
+            // Codice fidelity
             using (var paint = new SKPaint())
             {
                 paint.Color = SKColors.White;
                 paint.TextSize = 32;
                 paint.IsAntialias = true;
                 paint.Typeface = SKTypeface.FromFamilyName("Courier New", SKFontStyle.Bold);
-                // Use CdFidelity if available, otherwise fallback or empty
                 var code = fidelity.CdFidelity ?? "N/A";
                 canvas.DrawText(code, 40, 260, paint);
             }
             
+            // Punti
             using (var paint = new SKPaint())
             {
                 paint.Color = SKColors.White;
                 paint.TextSize = 24;
                 paint.IsAntialias = true;
-                // Assuming points are not readily available in Fidelity object or need to be passed. 
-                // For now, omitting or putting 0 if not present.
-                 canvas.DrawText($"Punti: 0", 40, 320, paint);
+                canvas.DrawText("Punti: 0", 40, 320, paint);
             }
             
+            // QR Code
             var qrGenerator = new QRCodeGenerator();
             var qrCodeData = qrGenerator.CreateQrCode(fidelity.CdFidelity ?? "NO_CODE", QRCodeGenerator.ECCLevel.Q);
             var qrCode = new PngByteQRCode(qrCodeData);
@@ -100,7 +107,7 @@ public class CardGeneratorService : ICardGeneratorService
             var qrGenerator = new QRCodeGenerator();
             var qrCodeData = qrGenerator.CreateQrCode(contenuto, QRCodeGenerator.ECCLevel.Q);
             var qrCode = new PngByteQRCode(qrCodeData);
-            return qrCode.GetGraphic(dimensione / 10); 
+            return qrCode.GetGraphic(dimensione / 10);
         });
     }
 }

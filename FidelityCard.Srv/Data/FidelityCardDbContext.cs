@@ -1,22 +1,23 @@
-﻿using FidelityCard.Lib.Models;
-using Humanizer.Localisation;
+using FidelityCard.Domain.Entities;
+using FidelityCard.Srv.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace FidelityCard.Srv.Data;
 
-public class FidelityCardDbContext(DbContextOptions<FidelityCardDbContext> options) : DbContext(options)
+public class FidelityCardDbContext : DbContext
 {
-    public DbSet<Fidelity> Fidelity { get; set; }
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public FidelityCardDbContext(DbContextOptions<FidelityCardDbContext> options) 
+        : base(options)
     {
-        modelBuilder.Entity<Fidelity>()
-            .HasIndex(u => u.Email)
-            .IsUnique();
-
-        modelBuilder.Entity<Fidelity>()
-              .HasIndex(u => u.CdFidelity)
-              .IsUnique();
     }
 
-}
+    public DbSet<Fidelity> Fidelity { get; set; } = null!;
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        // Applica tutte le configurazioni Fluent API
+        modelBuilder.ApplyConfiguration(new FidelityConfiguration());
+    }
+}
