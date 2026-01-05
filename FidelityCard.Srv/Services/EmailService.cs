@@ -161,7 +161,6 @@ public class EmailService : Application.Interfaces.IEmailService
         </div>
         <div class='content'>
             <h2>Ciao! 👋</h2>
-            <p>Sei stato registrato presso il nostro punto vendita <strong>{puntoVendita}</strong>.</p>
             <p>Per completare la tua registrazione e ricevere la tua Suns Fidelity Card digitale, clicca sul pulsante qui sotto:</p>
             
             <div style='text-align: center; margin: 20px 0;'>
@@ -180,11 +179,6 @@ public class EmailService : Application.Interfaces.IEmailService
                 <p style='margin: 0;'><strong>⏰ Attenzione:</strong> Questo link è valido per <strong>15 minuti</strong>.</p>
                 <p style='margin: 10px 0 0 0;'>Se non riesci a cliccare il pulsante, copia questo link nel tuo browser:</p>
                 <p style='word-break: break-all; color: #105a12ff; margin: 10px 0 0 0;'>{link}</p>
-            </div>
-
-            <div class='info-box'>
-                <p style='margin: 0;'><strong>🔑 Il tuo codice di verifica:</strong></p>
-                <p class='token'>{token}</p>
             </div>
         </div>
         <div class='footer'>
