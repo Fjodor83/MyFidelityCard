@@ -1,4 +1,3 @@
-using FidelityCard.Application.Interfaces;
 using FidelityCard.Application.UseCases;
 using FidelityCard.Domain.Interfaces;
 using FidelityCard.Lib.Services;
@@ -7,6 +6,10 @@ using FidelityCard.Srv.Repositories;
 using FidelityCard.Srv.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+
+// Alias per evitare ambiguità
+using IAppEmailService = FidelityCard.Application.Interfaces.IEmailService;
+using IAppCardGeneratorService = FidelityCard.Application.Interfaces.ICardGeneratorService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,8 +48,8 @@ builder.Services.AddScoped<ITokenRepository, FileTokenRepository>();
 // ==========================================
 // Service Registrations (Scoped)
 // ==========================================
-builder.Services.AddScoped<ICardGeneratorService, CardGeneratorService>();
-builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IAppCardGeneratorService, CardGeneratorService>();
+builder.Services.AddScoped<IAppEmailService, EmailService>();
 
 // ==========================================
 // Use Case Registrations (Scoped)
