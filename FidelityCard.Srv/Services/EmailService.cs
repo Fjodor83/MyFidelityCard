@@ -10,7 +10,7 @@ namespace FidelityCard.Srv.Services;
 /// <summary>
 /// Implementazione del servizio di invio email
 /// </summary>
-public class EmailService : IEmailService
+public class EmailService : Application.Interfaces.IEmailService
 {
     private readonly EmailSettings _emailSettings;
 
