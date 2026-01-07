@@ -497,47 +497,7 @@ h6:focus,
     background-position: right calc(0.375em + 0.1875rem) center;
 }
 
-/* ============================================
-   ADMIN DASHBOARD TABS
-   ============================================ */
-[class^="tab-green-"] {
-    border: none !important;
-    background: transparent;
-    color: #666;
-    font-weight: 500;
-    border-bottom: 3px solid transparent !important;
-    transition: all 0.3s ease;
-}
 
-.tab-green-1.active {
-    background: linear-gradient(135deg, #7bc96f 0%, #52ab47 100%) !important;
-    border-bottom-color: #52ab47 !important;
-}
-
-.tab-green-2.active {
-    background: linear-gradient(135deg, #52ab47 0%, #2d8a27 100%) !important;
-    border-bottom-color: #2d8a27 !important;
-}
-
-.tab-green-3.active {
-    background: linear-gradient(135deg, #2d8a27 0%, #105a12 100%) !important;
-    border-bottom-color: #105a12 !important;
-}
-
-.tab-green-4.active {
-    background: linear-gradient(135deg, #105a12 0%, #053e30 100%) !important;
-    border-bottom-color: #053e30 !important;
-}
-
-[class^="tab-green-"].active {
-    color: white !important;
-    box-shadow: var(--shadow-sm);
-}
-
-[class^="tab-green-"]:hover:not(.active) {
-    background: rgba(16, 90, 18, 0.1);
-    color: var(--primary-color);
-}
 
 /* ============================================
    RESPONSIVE
@@ -599,47 +559,7 @@ h6:focus,
         padding: 1.25rem;
     }
 
-    /* Mobile Table Cards */
-    .table-mobile-cards thead {
-        display: none;
-    }
 
-    .table-mobile-cards tbody,
-    .table-mobile-cards tr,
-    .table-mobile-cards td {
-        display: block;
-        width: 100%;
-    }
-
-    .table-mobile-cards tr {
-        background: #fff;
-        margin-bottom: 1rem;
-        border-radius: 12px;
-        box-shadow: var(--shadow-sm);
-        padding: 1rem;
-        border: 1px solid #eaeaea;
-    }
-
-    .table-mobile-cards td {
-        text-align: right;
-        padding: 0.5rem 0;
-        position: relative;
-        border-bottom: 1px solid #f0f0f0;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .table-mobile-cards td:last-child {
-        border-bottom: none;
-    }
-
-    .table-mobile-cards td::before {
-        content: attr(data-label);
-        float: left;
-        font-weight: 600;
-        color: #6c757d;
-        font-size: 0.75rem;
-    }
 }
 
 @media (max-width: 576px) {
