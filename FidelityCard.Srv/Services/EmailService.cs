@@ -1,5 +1,5 @@
 using FidelityCard.Application.Interfaces;
-using FidelityCard.Lib.Services;
+using FidelityCard.Srv.Services;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;

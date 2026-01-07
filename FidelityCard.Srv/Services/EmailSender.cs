@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Collections;
@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 
-namespace FidelityCard.Lib.Services;
+namespace FidelityCard.Srv.Services;
 
 public class EmailSettings
 {

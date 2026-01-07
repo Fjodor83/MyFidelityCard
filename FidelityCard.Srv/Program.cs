@@ -1,9 +1,9 @@
 using FidelityCard.Application.UseCases;
 using FidelityCard.Domain.Interfaces;
-using FidelityCard.Lib.Services;
+using FidelityCard.Srv.Services;
 using FidelityCard.Srv.Data;
 using FidelityCard.Srv.Repositories;
-using FidelityCard.Srv.Services;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
